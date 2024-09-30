@@ -356,5 +356,6 @@ a {
           .modal-footer {
             align-items: center!important;
           }
-          
-       
+.backgroundimg {
+  background-image: url('../images/meetig.webp');
+}

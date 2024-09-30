@@ -26,7 +26,6 @@
   </head>
   <body>
 
-
     <div class="site-mobile-menu">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -36,7 +35,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
     
-    <header class="site-navbar" role="banner">
+    <header class="site-navbar position-fixed" role="banner">
 
       <div class="container navbg">
         <div class="row align-items-center">
@@ -48,34 +47,18 @@
             <nav class="site-navigation position-relative text-right" role="navigation">
 
               <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li class=""><a href="index.html"><span>Home</span></a></li>
-                <li class="has-children">
-                  <a href="about.html"><span>Dropdown</span></a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
-                      <a href="#">Dropdown</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                        <li><a href="#">Menu Four</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
+                <li class=""><a href="index.html"><span>Főoldal</span></a></li>
+               
                 <li><a href="listings.html"><span>Listings</span></a></li>
                 <li><a href="about.html"><span>About</span></a></li>
                 <li><a href="blog.html"><span>Blog</span></a></li>
-                <li><a href="" data-bs-toggle="modal" data-bs-target="#exampleModal"><span >Bejelentkezés</span></a></li>
+                <li><a href="" data-bs-toggle="modal" data-bs-target="#login"><span >Bejelentkezés</span></a></li>
               </ul>
             </nav>
           </div>
 
-        <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    </div>
+<div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -87,13 +70,13 @@
         <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
           <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
         </svg></span>
-        <input type="text" class="form-control" placeholder="Belépési email" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="text" class="form-control" placeholder="Belépési email" aria-label="Username" aria-describedby="addon-wrapping" required>
       </div> 
       <div class="input-group flex-nowrap ">
         <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
           <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
         </svg></span>
-        <input type="text" class="form-control" placeholder="Jelszó" aria-label="Username" aria-describedby="addon-wrapping">
+        <input type="password" class="form-control" placeholder="Jelszó" aria-label="Jelszó" aria-describedby="addon-wrapping" required>
       </div> <br>
    
     </center>   <div class="form-check" style="margin-left: 5px; margin-top: -10px;">
@@ -105,12 +88,57 @@
       <center>
 
         <button type="button" class="btn mb-2 mb-md-0 py-2 px-3 btn-primary w-100 mt-2">Bejelentkezés</button>
-        <button type="button" class="btn mb-2 mb-md-0 py-2 px-3 btn-danger w-100 mt-2 ">Regisztráció</button>
+      <button type="button" data-bs-toggle="modal" data-bs-target="#register" class="btn mb-2 mb-md-0 py-2 px-3 btn-danger w-100 mt-2 ">Regisztráció</button>
       </center>
       </div>
       <div class="modal-footer">
       <a href="">Elfelejtett jelszó</a>
       </div>
+    </div>
+  </div>
+</div>
+   
+<div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Regisztráció</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+       <center><div class="input-group flex-nowrap pb-2">
+        <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+          <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+        </svg></span>
+        <input type="text" class="form-control" placeholder="Felhasználónév" aria-label="Felhasználónév" aria-describedby="addon-wrapping" required>
+      </div> 
+      <div class="input-group flex-nowrap pb-2 ">
+        <span class="input-group-text" id="addon-wrapping">@</span>
+        <input type="text" class="form-control" placeholder="Belépési email" aria-label="Email" aria-describedby="addon-wrapping" required>
+      </div>
+      <div class="input-group flex-nowrap ">
+        <span class="input-group-text" id="addon-wrapping"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-lock-fill" viewBox="0 0 16 16">
+          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+        </svg></span>
+        <input type="password" class="form-control" placeholder="Jelszó" aria-label="Jelszó" aria-describedby="addon-wrapping" required>
+      </div> <br>
+   
+    </center>   <div class="form-check" style="margin-left: 5px; margin-top: -10px;">
+        <input class="form-check-input" type="checkbox" value="" id="checkbox1" >
+        <label class="form-check-label" for="checkbox1">
+          Az ÁSZF-et és az Adatvédelmi tájékoztatót megismertem és elfogadom.
+        </label>
+        <input class="form-check-input" type="checkbox" value="" id="checkbox2" >
+        <label class="form-check-label" for="checkbox2">
+          16 éves elmúltam.
+        </label>
+      </div>
+      <center>
+
+        <button type="button" class="btn mb-2 mb-md-0 py-2 px-3 btn-danger w-100 mt-2 ">Regisztráció</button>
+      </center>
+      </div>
+     
     </div>
   </div>
 </div>
@@ -123,7 +151,6 @@
       </div>
       
     </header>
-
 
   
 
