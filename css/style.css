@@ -52,8 +52,8 @@ a {
 .site-navbar {
   margin-bottom: 0px;
   z-index: 1999;
-  position: absolute;
-  top: 2rem;
+  position: fixed;
+  top: 0;
   width: 100%; }
   .site-navbar.transparent {
     background: transparent; }
@@ -358,4 +358,23 @@ a {
           }
 .backgroundimg {
   background-image: url('../images/meetig.webp');
+}
+
+@media screen and (max-width: 580px) {
+  #navbar {
+    padding: 20px 10px !important;
+    
+  }
+  #navbar a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  #navbar-right {
+    float: none;
+  }
+}
+#navbar {transition: 0.4s;
+  width: 100%;
+  border-radius: 0px;
 }
