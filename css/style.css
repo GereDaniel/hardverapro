@@ -1,4 +1,7 @@
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@900&display=swap');
 .navbg {
   background-color: #5d5e5e48;
@@ -67,6 +70,7 @@ a {
     left: 0;
     font-size: 24px !important; }
   .site-navbar .site-navigation .site-menu {
+    float: inline-end;
     margin-bottom: 0; }
     .site-navbar .site-navigation .site-menu .active > a span {
       background: #007bff;
@@ -357,7 +361,13 @@ a {
             align-items: center!important;
           }
 .backgroundimg {
-  background-image: url('../images/meetig.webp');
+  background-image: url(../images/meeting.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100%;
+  height: 500px;
+  width: auto;
+  
 }
 
 @media screen and (max-width: 580px) {
@@ -378,3 +388,9 @@ a {
   width: 100%;
   border-radius: 0px;
 }
+.grid {
+  align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+
