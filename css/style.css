@@ -383,6 +383,7 @@ a {
   #navbar-right {
     float: none;
   }
+
 }
 #navbar {transition: 0.4s;
   width: 100%;
@@ -394,3 +395,8 @@ a {
     align-items: center;
 }
 
+@media screen and (min-width: 800px) {
+  .backgroundimg {
+    width: 100%;
+  }
+}

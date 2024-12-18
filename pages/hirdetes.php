@@ -1,4 +1,44 @@
-<!doctype html>
+<?php
+
+require_once "../includes/config.php";
+
+$result = $conn->query("SELECT * FROM hirdetesek ORDER BY feltoltes_datum ASC");
+
+?>
+
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Hirdetések</title>
+</head>
+<body>
+    <h1>Hirdetések</h1>
+    <?php if (isset($_GET['success'])): ?>
+        <p style="color: green;">Sikeres feltöltés!</p>
+    <?php endif; ?>
+    <div>
+    <?php while ($row = $result->fetch_assoc()): ?>
+        <div style="border: 1px solid #000; margin-bottom: 20px; padding: 10px;">
+            <h2><?= htmlspecialchars($row['cim']) ?></h2>
+            <p><strong>Kategória:</strong> <?= htmlspecialchars($row['kategoria']) ?></p>
+            <p><strong>Leírás:</strong> <?= nl2br(htmlspecialchars(substr($row['leiras'], 0, 100))) ?>...</p>
+            <?php if (file_exists($row['kep_url'])): ?>
+                <img src="<?= htmlspecialchars($row['kep_url']) ?>" alt="<?= htmlspecialchars($row['cim']) ?>" style="max-width: 300px;">
+            <?php endif; ?>
+            <form action="reszletek.php" method="POST">
+                <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                <button type="submit">További információ</button>
+            </form>
+        </div>
+    <?php endwhile; ?>
+</div>
+</body>
+</html>
+
+
+
+<!--<!doctype html>
 <html lang="en">
   <head>
 
@@ -8,6 +48,7 @@
     <link rel="stylesheet" href="css/style.css">
     
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -31,39 +72,40 @@
         </button>
       </div>
       <ul class="hidden absolute top-1/2 left-1/2 transform -translate-y-1/2 -translate-x-1/2 lg:flex lg:mx-auto lg:flex lg:items-center lg:w-auto lg:space-x-6">
-        <li><a class="text-sm text-blue-600 font-bold" href="#">Főoldal</a></li>
+        <li><a class="text-sm text-blue-600 font-bold" href="../index.html">Főoldal</a></li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">PROHARDVER</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://prohardver.hu/index.html" target="_blank">PROHARDVER</a></li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">Mobilaréna</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://mobilarena.hu/index.html 
+          " target="_blank">Mobilaréna</a></li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">IT café</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://itcafe.hu/index.html" target="_blank">IT café</a></li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">GAMEPOD.hu</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://gamepod.hu/index.html" target="_blank">GAMEPOD.hu</a></li>
         <li class="text-gray-300"></li>
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="#">LOGOUT.hu</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://logout.hu/index.html" target="_blank">LOGOUT.hu</a></li>
       </ul>
-      <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="#">Regisztráció</a>
+      <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="registration.html">Regisztráció</a>
       <a class="hidden lg:inline-block py-2 px-6 bg-blue-500 hover:bg-blue-600 text-sm text-white font-bold rounded-xl transition duration-200" href="#">Bejelentkezés</a>
     </nav>
     <div class="navbar-menu relative z-50 hidden">
@@ -114,190 +156,31 @@
   </header>
   <body>
     
-    <div class="grid justify-items-center backgroundimg">
-      <div class="flex items-center p-4 space-x-4 bg-white rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition duration-500 " style="
-      height: 100px;
-      margin-top: 50px;
-  ">
-        <div class="flex bg-gray-100 p-4 w-96 space-x-4 rounded-lg m-8">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 opacity-30" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-          </svg>
-          <input class="bg-gray-100 outline-none" type="text" placeholder="Keresés">
+   
+    <div class="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg w-[600px] m-auto ">
+        <div class="relative h-auto m-2.5 overflow-hidden text-white rounded-md m-auto">
+          <img class="align-middle" src="../images/400x400.png" alt="card-image"  />
         </div>
-       
-        <div class="bg-green-400 py-3 px-5 text-white font-semibold rounded-lg hover:shadow-lg transition duration-3000 cursor-pointer">
-          <span><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-          </svg></span>
+        <div class="p-4">
+          <h6 class="mb-2 text-slate-800 text-2xl font-semibold">
+           Hirdetés
+          </h6>
+          <p class="text-slate-600 leading-normal font-light text-justify">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempus massa faucibus lectus gravida ullamcorper. Fusce sollicitudin consectetur malesuada. Mauris dolor felis, tristique non fringilla id, vulputate ac sem. Aenean ligula ex, consectetur vel tristique vitae, pellentesque at nibh. Sed venenatis neque viverra libero laoreet eleifend. In scelerisque neque urna, non vulputate tortor eleifend quis. Aliquam ultricies vestibulum justo non ullamcorper. Maecenas ut tristique diam. 
+          </p>
         </div>
-      </div>
-    
-    </div>
-</div>
-   <div id="modelConfirm" class="fixed hidden z-50 inset-0 bg-gray-900 bg-opacity-60 overflow-y-auto h-full w-full px-4 ">
-       <div class="relative top-40 mx-auto shadow-xl rounded-md bg-white max-w-md">
-   
-           <div class="flex justify-end p-2">
-               <button onclick="closeModal('modelConfirm')" type="button"
-                   class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center">
-                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                       <path fill-rule="evenodd"
-                           d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                           clip-rule="evenodd"></path>
-                   </svg>
-               </button>
-           </div>
-   
-           <div class="p-6 pt-0 text-center">
-               <svg class="w-20 h-20 text-red-600 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                   xmlns="http://www.w3.org/2000/svg">
-                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                       d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-               </svg>
-               <h3 class="text-xl font-normal text-gray-500 mt-5 mb-6">Are you sure you want to delete this user?</h3>
-               <a href="#"  onclick="closeModal('modelConfirm')"
-                   class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-base inline-flex items-center px-3 py-2.5 text-center mr-2">
-                   Yes, I'm sure
-               </a>
-               <a href="#" onclick="closeModal('modelConfirm')"
-                   class="text-gray-900 bg-white hover:bg-gray-100 focus:ring-4 focus:ring-cyan-200 border border-gray-200 font-medium inline-flex items-center rounded-lg text-base px-3 py-2.5 text-center"
-                   data-modal-toggle="delete-user-modal">
-                   No, cancel
-               </a>
-           </div>
-   
-       </div>
-   </div>
-   
-  
-
-     
-    </div>
-  </div>
-</div>
-
-
-
+        <div class="px-4 pb-4 pt-0 mt-2">
+          <button class="rounded-md bg-blue-800 py-2 px-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-blue-700 focus:shadow-none active:bg-blue-700 hover:bg-blue-800 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            Üzenet a hírdetőnek
+          </button>
+          <button class="rounded-md bg-red-800 py-2 px-6 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-red-700 focus:shadow-none active:bg-red-700 hover:bg-red-800 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
+            Jelentem
+          </button>
         </div>
-      </div>
-  
-<div class="w-full bg-slate-800/55  grid grid-cols-8 gap-4 p-3 mt-[-1px]">
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-video-card-48.png" alt="">
-<label  class="text-white">Hardver</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-laptop-50.png" alt=""   >
-   <label  class="text-white">Notebook</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-monitor-50.png" alt="">
-<label  class="text-white">PC, szerver</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-mobile-phone-50.png" alt="">
-<label  class="text-white">Mobil, tablet</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-controller-50.png" alt="">
-<label  class="text-white">Konzol</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-headphones-50.png" alt=""   >
-   <label  class="text-white">TV-audió</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-camera-50.png" alt="">
-<label  class="text-white">Fotó-videó</label>
-</div>
-<div class="text-2xl flex space-x-6" style="flex-direction: row;
-flex-wrap: wrap;
-align-content: center;
-justify-content: center;
-align-items: center;"> 
-   
-<img src="images/icons8-bicycle-50.png" alt="">
-<label  class="text-white">Egyéb</label>
-</div>
-</div>
-<div>
-  <div class="shadow-lg flex flex-wrap w-full lg:w-4/5 mx-auto">
-    
-    <div class="bg-cover bg-bottom border w-full md:w-1/3 h-64 md:h-auto relative" style="background-image:url('https://images7.alphacoders.com/347/347549.jpg')">
-      <div class="absolute text-xl">
-        <i class="fa fa-heart text-white hover:text-red-light ml-4 mt-4 cursor-pointer"></i>
-      </div>
-    </div>
+      </div>  
 
-    <div class="bg-white w-full md:w-2/3">
-    
-      <div class="h-full mx-auto px-6 md:px-0 md:pt-6 md:-ml-6 relative">
-      
-        <div class="bg-white lg:h-full p-6 -mt-6 md:mt-0 relative mb-4 md:mb-0 flex flex-wrap md:flex-wrap items-center">
- 
-          <div class="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">
-            <h3>Saint Basil's Cathedral</h3>
-         
-            <hr class="w-1/4 md:ml-0 mt-4  border lg:hidden">
-          </div>
-       
-          <div class="w-full lg:w-3/5 lg:px-3">
-            <p class="text-md mt-4 lg:mt-0 text-justify md:text-left text-sm">
-            The Cathedral of Vasily the Blessed (Russian: Собор Василия Блаженного, Sobor Vasiliya Blazhennogo), commonly known as Saint Basil's Cathedral, is a church in Red Square in Moscow, Russia. The building, now a museum, is officially known as the Cathedral of the Intercession of the Most Holy Theotokos on the Moat (Russian: Собор Покрова Пресвятой Богородицы, что на Рву, Sobor Pokrova Presvyatoy Bogoroditsy, chto na Rvu) or Pokrovsky Cathedral (Russian: Покровский собор).[5] It was built from 1555–1561 on orders from Ivan the Terrible and commemorates the capture of Kazan and Astrakhan.
-            </p>
-          </div>
-          
-          <div class="w-full lg:w-1/5 mt-6 lg:mt-0 lg:px-4 text-center md:text-left">
-            <button class="bg-white hover:bg-grey-darker hover:text-white border border-solid border-grey w-1/3 lg:w-full py-2">Visit now</button>
-          </div>
-        </div>
-      </div>
-   
-    </div>
-
-  </div>
-
-</div>
-
-  
 
     
     <script src="js/main.js"></script>
   </body>
-</html>
+</html>-->
