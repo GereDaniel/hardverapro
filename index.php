@@ -202,8 +202,11 @@ align-items: center;">
 </div>
 
 </div>
+<?php 
 
+include_once "./pages/footer.php";
 
+?>
 
 
     
