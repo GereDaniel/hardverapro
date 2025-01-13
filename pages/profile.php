@@ -1,3 +1,4 @@
+
 <?php
 session_start();
 require_once '../includes/config.php'; // Include your database configuration file
@@ -78,5 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <input type="submit" value="Update Profile">
     </form>
+
 </body>
 </html>
