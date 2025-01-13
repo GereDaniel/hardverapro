@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Edit Profile</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-800">
+<body class="bg-slate-300">
     <h1>Edit Profile</h1>
     <?php
     if (isset($_SESSION['success'])) {
@@ -56,6 +56,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     ?>
     <form method="post" action="profile.php">
+
+
+    <div class="w-[400px] h-[600px] bg-slate-200 m-auto rounded-xl">
+        <div class="w-full pt-8 text-center">Profil szerkesztése</div>
+        <input type="text" name="nev" id="nev" value="Sáskarák" class="mt-8 w-5/6 mx-auto flex rounded-lg border-2 border-slate-400"><br>
+        <input type="text" name="email" id="email" value="sask@gmail.com" class="mt-4 w-5/6 mx-auto flex rounded-lg"><br>
+        <input type="submit" value="Mentés" class="w-[250px] h-[50px] bg-emerald-600 rounded-3xl mx-auto flex cursor-pointer hover:bg-emerald-700">
+
+    </div>
+
 
     <div class="flex w-11/12 h-40 bg-black mx-auto mt-8">
         <div class="flex-1 w-1/2 h-full bg-slate-500 rounded-lg">
