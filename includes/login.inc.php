@@ -37,7 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (password_verify($password, $hashed_password)) {
         session_start();
         $_SESSION['username'] = $db_username;
-        $_SESSION['allapot'] = 'active';
+        $_SESSION['id'] = $id;
+        $_SESSION['loggedin'] = true;
        
         header("Location: ../index.php");
         exit();

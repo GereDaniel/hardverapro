@@ -1,11 +1,21 @@
 
+
 <?php
 
 require_once "includes/config.php";
 
 $result = $conn->query("SELECT * FROM hirdetesek ORDER BY feltoltes_datum DESC");
 
+session_start();
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('location: pages/login.php');
+    exit;
+}
+
+echo "Welcome, " . $_SESSION['username'];
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -32,19 +42,6 @@ $result = $conn->query("SELECT * FROM hirdetesek ORDER BY feltoltes_datum DESC")
 include_once "./pages/navbar.php";
 
 
-// Start the session
-session_start();
-
-// Initialize a session variable
-if (!isset($_SESSION['username'])) {
-  $_SESSION['username'] = 'active';
-}
-
-// Access the session variable
-echo $_SESSION['username']  ;
-
-// Debug session variables
-print_r($_SESSION);
 ?>
 
 
@@ -183,6 +180,7 @@ align-items: center;">
 </div>
 </button>
 </div>
+<button><a href="pages/hirdcreate.php">Hirdetés létrehozása</a></button>
 <?php while ($row = $result->fetch_assoc()): ?>
         <div style="border: 1px solid #000; margin-bottom: 20px; padding: 10px;">
             <h2><?= htmlspecialchars($row['cim']) ?></h2>

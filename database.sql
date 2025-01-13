@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2024. Dec 18. 21:37
+-- Létrehozás ideje: 2025. Jan 13. 08:06
 -- Kiszolgáló verziója: 10.4.32-MariaDB
 -- PHP verzió: 8.2.12
 
@@ -44,7 +44,9 @@ CREATE TABLE `hirdetesek` (
 INSERT INTO `hirdetesek` (`id`, `cim`, `kategoria`, `leiras`, `kep_url`, `feltoltes_datum`, `email`) VALUES
 (1, 'aadssda', 'sddsadsa', 'dsasdaads', 'feltoltott_kepek/weidian1477481876-3bcb00000189a2eff1230a8133ca_1536_1536.jpg', '2024-12-12 21:55:19', ''),
 (2, 'sadfdsaf', 'sadfsdff', 'asdfsadfdsaf', 'feltoltott_kepek/ytlogo.png', '2024-12-12 21:56:42', ''),
-(3, 'safdgfdgsafdgsafdsvafgsva', 'afdgsfdsafdsaggfgadfgda', 'gfdagdafgdsgdf', '../pages/feltoltott_kepek/weidian1477481876-3bcb00000189a2eff1230a8133ca_1536_1536.jpg', '2024-12-12 22:31:31', '');
+(3, 'safdgfdgsafdgsafdsvafgsva', 'afdgsfdsafdsaggfgadfgda', 'gfdagdafgdsgdf', 'feltoltott_kepek/weidian1477481876-3bcb00000189a2eff1230a8133ca_1536_1536.jpg', '2024-12-12 22:31:31', ''),
+(4, 'SASDASD', 'SDAADSADS', 'ADSSADASD', 'feltoltott_kepek/Youtube_logo.png', '2024-12-22 14:25:16', ''),
+(5, 'sadsadsa', 'sadsaddasdas', 'saddsaadsfdsafdsd', '../feltoltott_kepek/CSGOCASES.COM.png', '2025-01-05 21:09:26', '');
 
 -- --------------------------------------------------------
 
@@ -124,7 +126,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT a táblához `hirdetesek`
 --
 ALTER TABLE `hirdetesek`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT a táblához `messages`

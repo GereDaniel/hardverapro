@@ -1,6 +1,3 @@
-<?php if(!isset($_SESSION['allapot'])) {
-  ?>
-
 
 <header class=" fixed top-0 w-full z-10">
      <nav class="relative px-4 py-4 flex justify-between items-center bg-white" style="z-index: 9999;">
@@ -35,8 +32,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
           </svg>
         </li>
-        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://mobilarena.hu/index.html 
-          " target="_blank">Mobilaréna</a></li>
+        <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://mobilarena.hu/index.html" target="_blank">Mobilaréna</a></li>
         <li class="text-gray-300">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" class="w-4 h-4 current-fill" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v0m0 7v0m0 7v0m0-13a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
@@ -55,6 +51,29 @@
           </svg>
         </li>
         <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://logout.hu/index.html" target="_blank">LOGOUT.hu</a></li>
+        <?php if(($_SESSION['loggedin']) == true) { ?>
+          <li class="relative">
+            <img src="<?php echo $_SESSION['loggedin']['profile_picture']; ?>" alt="Profile Picture" class="w-8 h-8 rounded-full cursor-pointer" onclick="toggleDropdown()">
+            <ul id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">
+              <li><a href="<?php 
+        if(file_exists("profile.php")) {
+          echo "profile.php";
+        }
+      else {
+        echo"pages/profile.php"; 
+      }
+        ?>" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edit Profile</a></li>
+              <li><a href="<?php 
+        if(file_exists("logout.php")) {
+          echo "logout.php";
+        }
+      else {
+        echo"pages/logout.php"; 
+      }
+        ?>" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a></li>
+            </ul>
+          </li>
+            <?php } else {?>
       </ul>
       <a class="hidden lg:inline-block lg:ml-auto lg:mr-3 py-2 px-6 bg-gray-50 hover:bg-gray-100 text-sm text-gray-900 font-bold  rounded-xl transition duration-200" href="<?php 
         if(file_exists("registration.php")) {
@@ -72,14 +91,13 @@
         echo"pages/login.php"; 
       }
         ?>">Bejelentkezés</a>
+      <?php } ?>
     </nav>
   
-    
+    <script>
+      function toggleDropdown() {
+        var dropdownMenu = document.getElementById('dropdownMenu');
+        dropdownMenu.classList.toggle('hidden');
+      }
+    </script>
   </header>
-  <?php }
-  else if(isset($_SESSION['allapot'])){
-    echo "mukodik";
-
-  }
- 
- ?>
