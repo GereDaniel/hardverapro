@@ -51,7 +51,10 @@
           </svg>
         </li>
         <li><a class="text-sm text-gray-400 hover:text-gray-500" href="https://logout.hu/index.html" target="_blank">LOGOUT.hu</a></li>
-        <?php if(($_SESSION['loggedin']) == true) { ?>
+        <?php
+      //Ez kapcsolja ki az errorok es warningok megjeleniteset
+        error_reporting(0);
+        if(($_SESSION['loggedin']) == true) { ;?>
           <li class="relative">
             <img src="<?php echo $_SESSION['loggedin']['profile_picture']; ?>" alt="Profile Picture" class="w-8 h-8 rounded-full cursor-pointer" onclick="toggleDropdown()">
             <ul id="dropdownMenu" class="hidden absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-md shadow-lg">

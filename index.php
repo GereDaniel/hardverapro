@@ -6,7 +6,7 @@ require_once "includes/config.php";
 
 $result = $conn->query("SELECT * FROM hirdetesek ORDER BY feltoltes_datum DESC");
 
-session_start();
+@session_start();
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
   header('location: pages/login.php');
