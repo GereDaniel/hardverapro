@@ -66,6 +66,14 @@
         echo"pages/profile.php"; 
       }
         ?>" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Edit Profile</a></li>
+        <li><a href="<?php
+        if(file_exists("hirdcreate.php")) {
+          echo"hirdcreate.php";
+        }
+        else {
+          echo"pages/hirdcreate.php";
+        }
+        ?>" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Hirdetés feltöltése</a></li>
               <li><a href="<?php 
         if(file_exists("logout.php")) {
           echo "logout.php";
@@ -73,7 +81,7 @@
       else {
         echo"pages/logout.php"; 
       }
-        ?>" class="block px-4 py-2 text-gray-800 hover:bg-gray-100">Logout</a></li>
+        ?>" class="block px-4 py-2 text-gray-800 hover:bg-red-600">Logout</a></li>
             </ul>
           </li>
             <?php } else {?>
