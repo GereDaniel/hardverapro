@@ -180,15 +180,18 @@ align-items: center;">
 </div>
 </button>
 </div>
-<button><a href="pages/hirdcreate.php">Hirdetés létrehozása</a></button>
 <?php while ($row = $result->fetch_assoc()): ?>
-        <div style="border: 1px solid #000; margin-bottom: 20px; padding: 10px;">
+        <div style="border: 1px solid #000; margin-bottom: 20px; padding: 10px; display: flex
+;
+    align-content: stretch;
+    justify-content: space-around;">
+               <?php if (file_exists($row['kep_url'])): ?>
+                <img src="<?= htmlspecialchars($row['kep_url']) ?>" alt="<?= htmlspecialchars($row['cim']) ?>" style="width: 200px; height: auto;">
+            <?php endif; ?>
             <h2><?= htmlspecialchars($row['cim']) ?></h2>
             <p><strong>Kategória:</strong> <?= htmlspecialchars($row['kategoria']) ?></p>
             <p><strong>Leírás:</strong> <?= nl2br(htmlspecialchars(substr($row['leiras'], 0, 100))) ?>...</p>
-            <?php if (file_exists($row['kep_url'])): ?>
-                <img src="<?= htmlspecialchars($row['kep_url']) ?>" alt="<?= htmlspecialchars($row['cim']) ?>" style="max-width: 300px;">
-            <?php endif; ?>
+         
             <form action="pages/reszletek.php" method="POST">
                 <input type="hidden" name="id" value="<?= $row['id'] ?>">
                 <button type="submit">További információ</button>

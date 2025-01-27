@@ -1,4 +1,4 @@
-<footer class="static h-32 w-full bg-slate-900">
+<footer class="static h-32 w-full bg-slate-900 bottom-0">
 
 <div class="container grid gap-5 grid-cols-3 grid-rows-1 place-content-center">
     <div class="w-full h-32">
