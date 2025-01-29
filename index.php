@@ -13,7 +13,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
     exit;
 }
 
-echo "Welcome, " . $_SESSION['username'];
 ?>
 
 <!doctype html>
@@ -180,25 +179,29 @@ align-items: center;">
 </div>
 </button>
 </div>
-<?php while ($row = $result->fetch_assoc()): ?>
-        <div style="border: 1px solid #000; margin-bottom: 20px; padding: 10px; display: flex
-;
-    align-content: stretch;
-    justify-content: space-around;">
-               <?php if (file_exists($row['kep_url'])): ?>
-                <img src="<?= htmlspecialchars($row['kep_url']) ?>" alt="<?= htmlspecialchars($row['cim']) ?>" style="width: 200px; height: auto;">
-            <?php endif; ?>
-            <h2><?= htmlspecialchars($row['cim']) ?></h2>
-            <p><strong>Kategória:</strong> <?= htmlspecialchars($row['kategoria']) ?></p>
-            <p><strong>Leírás:</strong> <?= nl2br(htmlspecialchars(substr($row['leiras'], 0, 100))) ?>...</p>
-         
-            <form action="pages/reszletek.php" method="POST">
-                <input type="hidden" name="id" value="<?= $row['id'] ?>">
-                <button type="submit">További információ</button>
-            </form>
+
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Hirdetések</h1>
+        <div class="space-y-6">
+            <?php while ($row = $result->fetch_assoc()): ?>
+                <div class="bg-white p-5 rounded-xl shadow-md flex flex-col sm:flex-row items-center space-x-0 sm:space-x-4 border border-gray-200">
+                    <?php if (file_exists($row['kep_url'])): ?>
+                        <img src="<?= htmlspecialchars($row['kep_url']) ?>" alt="<?= htmlspecialchars($row['cim']) ?>" class="w-32 h-32 object-cover rounded-lg">
+                    <?php endif; ?>
+                    <div class="flex-1 text-center sm:text-left">
+                        <h2 class="text-xl font-semibold text-gray-800"> <?= htmlspecialchars($row['cim']) ?></h2>
+                        <p class="text-gray-600"><strong>Kategória:</strong> <?= htmlspecialchars($row['kategoria']) ?></p>
+                        <p class="text-gray-700 mt-2"> <?= nl2br(htmlspecialchars(substr($row['leiras'], 0, 100))) ?>...</p>
+                    </div>
+                    <form action="pages/reszletek.php" method="POST" class="mt-4 sm:mt-0">
+                        <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                        <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition">
+                            További információ
+                        </button>
+                    </form>
+                </div>
+            <?php endwhile; ?>
         </div>
-    <?php endwhile; ?>
- 
+
 
 </div>
 

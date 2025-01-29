@@ -3,7 +3,10 @@
 require_once "../includes/config.php";
 
 $result = $conn->query("SELECT * FROM hirdetesek ORDER BY feltoltes_datum ASC");
-
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+  header('location: login.php');
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
